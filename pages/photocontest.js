@@ -12,7 +12,7 @@ const PhotoContest = () => {
   return (
     <>
       <Head>
-        <title>{pagetitle} - Elm Point</title>
+        <title>{`${pagetitle} - Elm Point`}</title>
       </Head>
       <div className="flex flex-col items-stretch gap-5 p-2.5">
         <TitleBlock
