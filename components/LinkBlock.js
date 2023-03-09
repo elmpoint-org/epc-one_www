@@ -2,9 +2,18 @@ import Link from 'next/link';
 
 import LockIcon from './svg/icon_lock16';
 
-const LinkBlock = ({ name, url, description, secure, external, highlight }) => {
+const LinkBlock = ({
+  name,
+  url,
+  description,
+  secure,
+  external,
+  highlight,
+  id,
+}) => {
   const content = (
     <div
+      data-id={id}
       className={`h-full rounded-[10px] border border-black/[.55] p-2.5 hover:bg-black/5 ${
         highlight
           ? `border-0 bg-gradient-to-b from-account-green to-account-green-darker hover:bg-emerald-700 hover:bg-none`

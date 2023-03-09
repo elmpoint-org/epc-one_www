@@ -35,14 +35,8 @@ const Nav = () => {
       </Link>
       {/* nav buttons */}
       <div className="flex flex-row items-center gap-2.5 p-2.5">
-        {navLinks.map((it, i) => (
-          <NavButton
-            key={i}
-            text={it.text}
-            url={it.url}
-            selected={path === it.url}
-            secure={it.secure}
-          />
+        {navLinks.map((props, i) => (
+          <NavButton key={i} selected={path === props.url} {...props} />
         ))}
         {/* profile button */}
         <div className="flex cursor-pointer flex-row items-center gap-2.5 rounded-full bg-account-green/90 p-1 px-[5px]">

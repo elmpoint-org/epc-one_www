@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { RecoilRoot } from 'recoil';
 
 import { Merriweather } from '@next/font/google';
 const merriweather = Merriweather({
@@ -12,7 +13,7 @@ import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <RecoilRoot>
       <Head>
         <title>Elm Point</title>
         <meta
@@ -29,6 +30,6 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} />
         </Layout>
       </main>
-    </>
+    </RecoilRoot>
   );
 }

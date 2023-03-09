@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useState } from 'react';
 
 import TitleBlock from '../components/TitleBlock';
 
@@ -9,16 +10,22 @@ const titleblock = {
 };
 
 const PhotoContest = () => {
+  const [input, setInput] = useState('');
+
+  const onChange = ({ target: { value } }) => setInput(value);
+
   return (
     <>
       <Head>
         <title>{`${pagetitle} - Elm Point`}</title>
       </Head>
       <div className="flex flex-col items-stretch gap-5 p-2.5">
-        <TitleBlock
-          title={titleblock.title}
-          description={titleblock.description}
-        />
+        <TitleBlock {...titleblock} />
+        <div className="mx-2.5 h-0.5 rounded-full bg-black/10"></div>
+        <div className="mx-2.5">
+          text disappears:&nbsp;
+          <input type="text" value={input} {...{ onChange }} />
+        </div>
       </div>
     </>
   );

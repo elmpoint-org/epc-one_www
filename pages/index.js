@@ -1,3 +1,12 @@
+import Link from 'next/link';
+import { useRecoilValue } from 'recoil';
+
+import axios from 'axios';
+
+import { uncompletedItemsState } from '../state/todoList';
+
+import { api } from '../utils/dev';
+
 import LinkBlock from '../components/LinkBlock';
 import TitleBlock from '../components/TitleBlock';
 
@@ -6,69 +15,53 @@ const titleblock = {
   description: `See below for links to commonly used pages on this website. Items with locks will require you to log in to see them.`,
 };
 
-const links = [
-  {
-    name: 'Visitor calendar',
-    url: '/calendar',
-    description: `Click here to see camp availability and let everyone know when you're coming.`,
-    secure: true,
-    highlight: true,
-  },
-  {
-    name: 'Project list',
-    url: '/projects',
-    description: `Click to find the current "fridge list" of tasks needed to keep camp in good condition. Please work on a task (or a few!) while you're here.`,
-    secure: true,
-  },
-  {
-    name: 'Document center',
-    url: '/documents',
-    description: `This is where you can find important camp documentation like budget history, opening instructions, guest waivers, etc.`,
-    secure: true,
-  },
-  {
-    name: 'Photo contest',
-    url: '/photocontest',
-    description: `Click here to submit your entry to the annual photo contest, and browse past years' submissions!`,
-  },
-  {
-    name: 'Elm Point history',
-    url: '/history',
-    description: `Click here to read about family history, browse old photos, and help out with research efforts.`,
-    secure: true,
-  },
-  {
-    name: 'Directions',
-    url: 'https://www.google.com/maps/place/14+Elm+Point+Rd,+Mirror+Lake,+NH+03853/',
-    external: true,
-    description: `Click here to see Google Maps directions from your location to Elm Point.`,
-  },
-];
+export default function Home({ links }) {
+  const leftTodo = useRecoilValue(uncompletedItemsState);
 
-export default function Home() {
   return (
     <>
       <div className="flex flex-col items-stretch gap-5 p-2.5">
-        <TitleBlock
-          title={titleblock.title}
-          description={titleblock.description}
-        />
+        <TitleBlock {...titleblock} />
 
         {/* common links */}
-        <div className="grid auto-rows-fr grid-cols-1 gap-2.5 p-2.5 md:grid-cols-3">
-          {links.map((it, i) => (
-            <LinkBlock
-              key={i}
-              name={it.name}
-              url={it.url}
-              description={it.description}
-              secure={it.secure}
-              external={it.external}
-              highlight={it.highlight}
-            />
-          ))}
+        <div className="grid auto-rows-fr grid-cols-1 gap-2.5 p-2.5 sm:grid-cols-2 lg:grid-cols-3">
+          {links
+            .sort((a, b) => a.order - b.order)
+            .map((props, i) => (
+              <LinkBlock key={i} {...props} />
+            ))}
+        </div>
+
+        <div className="text-sm italic opacity-80">
+          <p className="inline">
+            You have <span className="font-black">{leftTodo}</span> uncompleted
+            todo list items{leftTodo ? '.' : '!'}&nbsp;
+          </p>
+          <Link className="text-blue-600 hover:underline" href="/atoms">
+            Update your list here.
+          </Link>
         </div>
       </div>
     </>
   );
+}
+
+export async function getStaticProps(context) {
+  const props = {};
+
+  try {
+    const { data } = await axios.get(api + '/cms/home_links');
+    if (!data) throw new Error('no home links!');
+    props.links = data.links;
+  } catch (e) {
+    if (e.response)
+      throw new Error(
+        (({ status, statusText, data }) => `${status} ${statusText}: ${data}`)(
+          e.response
+        )
+      );
+    throw new Error(e);
+  }
+
+  return { props };
 }
