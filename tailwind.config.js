@@ -13,8 +13,9 @@ module.exports = {
       colors: {
         'account-green': '#047857',
         'account-green-darker': '#046d4F',
+        'nav-backdrop': 'rgb(2 33 25)',
       },
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [require('@tailwindcss/line-clamp'), require('@tailwindcss/forms')],
 };

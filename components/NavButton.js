@@ -2,13 +2,17 @@ import Link from 'next/link';
 
 import LockIcon from './svg/icon_lock19';
 
-const NavButton = ({ text, url, secure, selected }) => {
+const NavButton = ({ text, url, secure, selected, center, ...props }) => {
   return (
-    <Link href={url || ''}>
+    <Link href={url || ''} {...props}>
       <div
-        className={`hidden cursor-pointer flex-row items-center gap-2.5 rounded-full bg-emerald-800 py-1 px-5 lg:flex ${
+        className={`flex cursor-pointer flex-row items-center gap-2.5 rounded-full bg-emerald-800 ${
+          center ? `!m-0 justify-center py-2` : `py-1`
+        } px-5 ${
           selected
             ? '-m-[5px] border-[5px] border-emerald-800 bg-emerald-700'
+            : center
+            ? 'hover:bg-emerald-900/90'
             : 'hover:bg-white/5'
         }`}
       >
