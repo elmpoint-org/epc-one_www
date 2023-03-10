@@ -14,7 +14,7 @@ const LinkBlock = ({
   const content = (
     <div
       data-id={id}
-      className={`h-full rounded-[10px] border border-black/[.55] p-2.5 hover:bg-black/5 ${
+      className={`h-full rounded-[10px] border border-zinc-900/[.55] p-2.5 hover:bg-black/5 ${
         highlight
           ? `border-0 bg-gradient-to-b from-account-green to-account-green-darker hover:bg-emerald-700 hover:bg-none`
           : ''
@@ -31,8 +31,8 @@ const LinkBlock = ({
         </div>
         {!secure ? null : (
           <div
-            className={`stroke-zinc-900 opacity-[.47] ${
-              highlight ? `stroke-zinc-100` : ''
+            className={`opacity-[.47] ${
+              highlight ? `stroke-zinc-100` : 'stroke-zinc-900'
             }`}
           >
             <LockIcon />
