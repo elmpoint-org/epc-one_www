@@ -23,8 +23,8 @@ const LinkBlock = ({
       {/* link name */}
       <div className="flex flex-row items-center justify-start gap-[7px] p-2.5">
         <div
-          className={`text-base font-bold capitalize text-zinc-900 underline ${
-            highlight ? `text-zinc-100/90` : ''
+          className={`text-base font-bold capitalize underline ${
+            highlight ? `text-zinc-100/90` : 'text-zinc-900'
           }`}
         >
           {name}
