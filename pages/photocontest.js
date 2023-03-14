@@ -42,7 +42,7 @@ const PhotoContest = () => {
             </div>
 
             {/* buttons */}
-            <div className="flex flex-row justify-end gap-2.5 p-2.5">
+            <div className="flex flex-row justify-end gap-2.5 py-5 px-2.5">
               <input
                 type="submit"
                 value="Submit"

@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
+        serif: ['var(--font-mw)', ...defaultTheme.fontFamily.serif],
       },
       boxShadow: {
         nav: '0px 2px 4px rgba(0, 0, 0, 0.21)',

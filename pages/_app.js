@@ -5,6 +5,8 @@ import { Merriweather } from '@next/font/google';
 const merriweather = Merriweather({
   subsets: ['latin'],
   weight: ['300', '400', '700', '900'],
+  display: 'swap',
+  variable: '--font-mw',
 });
 
 import Layout from '../components/layout.js';
@@ -25,7 +27,7 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={merriweather.className}>
+      <main className={`${merriweather.variable} font-serif`}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
@@ -33,3 +35,7 @@ export default function App({ Component, pageProps }) {
     </RecoilRoot>
   );
 }
+
+const fonts = { merriweather };
+
+export { fonts };

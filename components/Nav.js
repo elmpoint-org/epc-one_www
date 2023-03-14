@@ -82,7 +82,6 @@ const Nav = () => {
             <NavButton
               key={i}
               selected={path === props.url}
-              center={windowSize.width < screens('lg')}
               onClick={() => setOpen(false)}
               {...props}
             />
@@ -113,19 +112,19 @@ const Nav = () => {
                     opacity: 0,
                   },
                 }}
-                className="absolute top-24 left-0 z-20 flex w-full flex-col items-stretch gap-2.5 p-2.5 px-7 lg:static lg:w-auto lg:flex-row lg:items-center"
+                className="absolute top-24 left-0 z-20 flex w-full flex-col items-stretch gap-2.5 p-2.5 px-7 lg:static lg:hidden lg:w-auto lg:flex-row lg:items-center"
               >
                 {navLinks.map((props, i) => (
                   <NavButton
                     key={i}
                     selected={path === props.url}
-                    center={windowSize.width < screens('lg')}
+                    center
                     onClick={() => setOpen(false)}
                     {...props}
                   />
                 ))}
 
-                <div className="_px-[5px] flex cursor-pointer flex-row items-center justify-end gap-2.5 rounded-full bg-emerald-800">
+                <div className="flex cursor-pointer flex-row items-center justify-end gap-2.5 rounded-full bg-emerald-800">
                   <div className="rounded-full bg-account-green/90 stroke-emerald-50 p-2">
                     <AccountIcon />
                   </div>
